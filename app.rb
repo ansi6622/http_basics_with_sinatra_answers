@@ -23,6 +23,10 @@ get '/items' do
   erb :items, locals: {items: matched_items}
 end
 
+get '/items/new' do
+  erb :new_item
+end
+
 def items
   settings.items
 end
