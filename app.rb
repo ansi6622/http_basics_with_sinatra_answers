@@ -33,6 +33,12 @@ post '/items' do
   redirect to('/items')
 end
 
+get '/items/:id' do
+  id = params[:id]
+  item_name = items[id.to_i]
+  erb :show_item, locals: {item_name: item_name}
+end
+
 def items
   settings.items
 end
