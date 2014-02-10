@@ -54,6 +54,12 @@ get '/items/:id/edit' do
   end
 end
 
+put '/items/:id' do
+  id = params[:id].to_i
+  items[id] = params['item_name']
+  redirect to('/items')
+end
+
 def items
   settings.items
 end
