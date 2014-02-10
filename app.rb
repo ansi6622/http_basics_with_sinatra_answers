@@ -40,7 +40,7 @@ get '/items/:id' do
   if item_name.nil?
     halt 404, erb(:not_found)
   else
-    erb :show_item, locals: {item_name: item_name}
+    erb :show_item, locals: {id: id, item_name: item_name}
   end
 end
 
