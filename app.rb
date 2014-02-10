@@ -27,6 +27,12 @@ get '/items/new' do
   erb :new_item
 end
 
+post '/items' do
+  max_id = items.keys.max
+  items[max_id + 1] = params['item_name']
+  redirect to('/items')
+end
+
 def items
   settings.items
 end
