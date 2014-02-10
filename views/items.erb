@@ -1,0 +1,9 @@
+<h1>Items</h1>
+
+<a href="/items/new">Add New Item</a>
+
+<ul>
+  <% items.each do |id, name| %>
+    <li><%= name %> - <a href="/items/<%= id %>">Show Item</a> </li>
+  <% end %>
+</ul>
