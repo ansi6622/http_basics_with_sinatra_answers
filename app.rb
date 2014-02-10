@@ -47,7 +47,11 @@ end
 get '/items/:id/edit' do
   id = params[:id]
   item_name = items[id.to_i]
-  erb :edit_item, locals: {id: id, item_name: item_name}
+  if item_name.nil?
+    halt 404, erb(:not_found)
+  else
+    erb :edit_item, locals: {id: id, item_name: item_name}
+  end
 end
 
 def items
