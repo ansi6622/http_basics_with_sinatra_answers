@@ -1,0 +1,7 @@
+<h1> Editing <%= item_name %></h1>
+
+<form action="/item/<%= id %>" method="post">
+  <input type="hidden" name="_method" value="put">
+  <input type="text" name="item_name">
+  <input type="submit">
+</form>

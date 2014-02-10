@@ -44,6 +44,12 @@ get '/items/:id' do
   end
 end
 
+get '/items/:id/edit' do
+  id = params[:id]
+  item_name = items[id.to_i]
+  erb :edit_item, locals: {id: id, item_name: item_name}
+end
+
 def items
   settings.items
 end
