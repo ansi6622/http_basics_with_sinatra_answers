@@ -10,15 +10,23 @@ get '/items' do
   filter = params['filter']
 
   if filter.nil?
-    matched_items = settings.items
+    matched_items = items
   else
     matched_items = {}
-    settings.items.each do |id, name|
-      if name.downcase.include?(filter.downcase)
+    items.each do |id, name|
+      if matches?(filter, name)
         matched_items[id] = name
       end
     end
   end
 
   erb :items, locals: {items: matched_items}
+end
+
+def items
+  settings.items
+end
+
+def matches?(filter, name)
+  name.downcase.include?(filter.downcase)
 end
