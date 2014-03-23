@@ -19,6 +19,11 @@ class ItemsRepository
     end
   end
 
+  def add(name)
+    next_id = @items.length + 1
+    @items << Item.new(next_id, name)
+  end
+
   private
   def matches?(filter, item)
     puts item.name.downcase.include?(filter.downcase)

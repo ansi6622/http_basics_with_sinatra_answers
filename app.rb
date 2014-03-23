@@ -16,8 +16,7 @@ get '/items/new' do
 end
 
 post '/items' do
-  max_id = items.keys.max
-  items[max_id + 1] = params['item_name']
+  settings.items_repository.add(params['item_name'])
   redirect to('/items')
 end
 
