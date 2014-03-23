@@ -38,6 +38,10 @@ class ItemsRepository
     item.name = name
   end
 
+  def delete(id)
+    @items.delete(find(id))
+  end
+
   private
   def matches?(filter, item)
     puts item.name.downcase.include?(filter.downcase)

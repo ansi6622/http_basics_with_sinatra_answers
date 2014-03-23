@@ -46,12 +46,8 @@ end
 delete '/items/:id' do
   # no need to return a 404 because delete is idempotent.
   # if the item doesn't exist then delete doesn't have to do it's job
-  items.delete(params[:id].to_i)
+  settings.items_repository.delete(params[:id].to_i)
   redirect to('/items')
-end
-
-def items
-  settings.items
 end
 
 
