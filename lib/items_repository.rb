@@ -47,7 +47,6 @@ class ItemsRepository
 
   private
   def matches?(filter, item)
-    puts item.name.downcase.include?(filter.downcase)
     item.name.downcase.include?(filter.downcase)
   end
 end
