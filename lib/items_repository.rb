@@ -22,13 +22,16 @@ class ItemsRepository
   def find(id)
     @items.each do |item|
       if item.id == id
+        # you found the item so just return it.
         return item
       end
     end
+    # you didn't find the item so signal that you didn't find it
     nil
   end
 
   def add(name)
+    # ids need to be unique
     next_id = @items.length + 1
     @items << Item.new(next_id, name)
   end
