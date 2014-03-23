@@ -6,4 +6,8 @@ class Item
     @id = id
     @name = name
   end
+
+  def matches?(filter)
+    self.name.downcase.include?(filter.downcase)
+  end
 end

@@ -11,7 +11,7 @@ class ItemsRepository
     else
       matched_items = []
       @items.each do |item|
-        if matches?(filter, item)
+        if item.matches?(filter)
           matched_items << item
         end
       end
@@ -43,10 +43,5 @@ class ItemsRepository
 
   def delete(id)
     @items.delete(find(id))
-  end
-
-  private
-  def matches?(filter, item)
-    item.name.downcase.include?(filter.downcase)
   end
 end
