@@ -3,7 +3,7 @@
 <a href="/items/new">Add New Item</a>
 
 <ul>
-  <% items.each do |id, name| %>
-    <li><%= name %> - <a href="/items/<%= id %>">Show Item</a> </li>
+  <% items.each do |item| %>
+    <li><%= item.name %> - <a href="/items/<%= item.id %>">Show Item</a> </li>
   <% end %>
 </ul>
