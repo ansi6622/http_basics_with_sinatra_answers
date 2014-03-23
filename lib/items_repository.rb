@@ -19,9 +19,23 @@ class ItemsRepository
     end
   end
 
+  def find(id)
+    @items.each do |item|
+      if item.id == id
+        return item
+      end
+    end
+    nil
+  end
+
   def add(name)
     next_id = @items.length + 1
     @items << Item.new(next_id, name)
+  end
+
+  def update(id, name)
+    item = find(id)
+    item.name = name
   end
 
   private

@@ -21,26 +21,25 @@ post '/items' do
 end
 
 get '/items/:id' do
-  item_name = items[params[:id].to_i]
-
-  if item_name.nil?
+  item = settings.items_repository.find(params[:id].to_i)
+  if item.nil?
     halt 404, erb(:not_found)
   else
-    erb :show_item, locals: {id: params[:id], item_name: item_name}
+    erb :show_item, locals: {item: item}
   end
 end
 
 get '/items/:id/edit' do
-  item_name = items[params[:id].to_i]
-  if item_name.nil?
+  item = settings.items_repository.find(params[:id].to_i)
+  if item.nil?
     halt 404, erb(:not_found)
   else
-    erb :edit_item, locals: {id: params[:id], item_name: item_name}
+    erb :edit_item, locals: {item: item}
   end
 end
 
 put '/items/:id' do
-  items[params[:id].to_i] = params['item_name']
+  settings.items_repository.update(params[:id].to_i, params['item_name'])
   redirect to('/items')
 end
 
