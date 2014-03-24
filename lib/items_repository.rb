@@ -2,7 +2,7 @@ require './lib/item'
 
 class ItemsRepository
   def initialize
-    @items = [Item.new(1, "Channa Masala"), Item.new(2, "Chicken Tikka Masala"), Item.new(3, "Saag Paneer")]
+    @items = []
   end
 
   def items(filter)
