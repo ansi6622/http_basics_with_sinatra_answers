@@ -1,14 +1,14 @@
 require 'sinatra'
 require './lib/items_repository'
 
-set :items_repository, ItemsRepository.new
+ITEMS_REPOSITORY = ItemsRepository.new
 
 get '/' do
   erb :index
 end
 
 get '/items' do
-  erb :items, locals: {items: settings.items_repository.items(params['filter'])}
+  erb :items, locals: {items: ITEMS_REPOSITORY.items(params['filter'])}
 end
 
 get '/items/new' do
@@ -16,12 +16,12 @@ get '/items/new' do
 end
 
 post '/items' do
-  settings.items_repository.add(params['item_name'])
+  ITEMS_REPOSITORY.add(params['item_name'])
   redirect to('/items')
 end
 
 get '/items/:id' do
-  item = settings.items_repository.find(params[:id].to_i)
+  item = ITEMS_REPOSITORY.find(params[:id].to_i)
   if item.nil?
     halt 404, erb(:not_found)
   else
@@ -30,7 +30,7 @@ get '/items/:id' do
 end
 
 get '/items/:id/edit' do
-  item = settings.items_repository.find(params[:id].to_i)
+  item = ITEMS_REPOSITORY.find(params[:id].to_i)
   if item.nil?
     halt 404, erb(:not_found)
   else
@@ -39,14 +39,14 @@ get '/items/:id/edit' do
 end
 
 put '/items/:id' do
-  settings.items_repository.update(params[:id].to_i, params['item_name'])
+  ITEMS_REPOSITORY.update(params[:id].to_i, params['item_name'])
   redirect to('/items')
 end
 
 delete '/items/:id' do
   # no need to return a 404 because delete is idempotent.
   # if the item doesn't exist then delete doesn't have to do it's job
-  settings.items_repository.delete(params[:id].to_i)
+  ITEMS_REPOSITORY.delete(params[:id].to_i)
   redirect to('/items')
 end
 
